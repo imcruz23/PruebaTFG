@@ -4,9 +4,8 @@ using UnityEngine;
 
 public class MusicalNote : MonoBehaviour
 {
-
-    public Vector3 spawnPos;
-    public Vector3 removePos;
+    public Vector3 spawnPos; // Posicion Inicial
+    public Vector3 removePos; // Posicion final
     [SerializeField] private SongManager SM;
     [SerializeField] private GameObject activatorPoint;
 
@@ -26,24 +25,35 @@ public class MusicalNote : MonoBehaviour
             activatorPoint.transform.position.y - 300f,
             activatorPoint.transform.position.z
          );
-        removePos = activatorPoint.transform.position;
+        removePos = new Vector3(
+            activatorPoint.transform.position.x, 
+            activatorPoint.transform.position.y + 100f, 
+            activatorPoint.transform.position.z
+         );
     }
 
     // Update is called once per frame
     void Update()
     {
-        
         transform.position = Vector3.Lerp(
             spawnPos,
             removePos,
             ( 0.4f * (SM.songPosition / SM.beatsShownInAdvance) )
             );
 
-        //transform.position = Vector3.Lerp(transform.position.x, SM.beatsShownInAdvance - (transform.position.y + SM.songPositionInBeats) / SM.beatsShownInAdvance, transform.position.z);
+        if (transform.position.y == removePos.y)
+        {
+            Destroy(this.gameObject);
+        }
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-            print("In time!");
+       print("Colision");
+    }
+
+    private void OnDestroy()
+    {
+        Debug.Log("Elimino nota");
     }
 }

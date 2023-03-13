@@ -39,7 +39,6 @@ public class SongManager : MonoBehaviour
     // El tiempo que quiero para poder hacer la accion
     public float timeToAction;
 
-
     // La nota
     public GameObject notePrefab;
 
