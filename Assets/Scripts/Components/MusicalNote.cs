@@ -20,6 +20,7 @@ public class MusicalNote : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
+        /*
         spawnPos = new Vector3(
             activatorPoint.transform.position.x,
             activatorPoint.transform.position.y - 300f,
@@ -28,6 +29,13 @@ public class MusicalNote : MonoBehaviour
         removePos = new Vector3(
             activatorPoint.transform.position.x, 
             activatorPoint.transform.position.y + 100f, 
+            activatorPoint.transform.position.z
+         );
+        */
+        spawnPos = activatorPoint.transform.position;
+        removePos = new Vector3(
+            activatorPoint.transform.position.x,
+            activatorPoint.transform.position.y + 100f,
             activatorPoint.transform.position.z
          );
     }
@@ -41,19 +49,25 @@ public class MusicalNote : MonoBehaviour
             ( 0.4f * (SM.songPosition / SM.beatsShownInAdvance) )
             );
 
-        if (transform.position.y == removePos.y)
+        /*if (transform.position.y == removePos.y)
         {
             Destroy(this.gameObject);
-        }
+        }*/
+        Invoke(nameof(DestroyNote), 2.0f);
+    }
+
+    private void DestroyNote()
+    {
+        Destroy(this.gameObject);
     }
 
     private void OnTriggerEnter2D(Collider2D other)
     {
-       print("Colision");
+       //print("Colision");
     }
 
     private void OnDestroy()
     {
-        Debug.Log("Elimino nota");
+        //Debug.Log("Elimino nota");
     }
 }

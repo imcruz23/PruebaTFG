@@ -5,6 +5,7 @@ using UnityEngine;
 public class LevelManager : MonoBehaviour
 {
     [HideInInspector] public int score;
+    public Vector3 startPosition;
     // Start is called before the first frame update
 
 

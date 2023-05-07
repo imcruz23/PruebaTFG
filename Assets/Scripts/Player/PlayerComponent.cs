@@ -4,13 +4,14 @@ using UnityEngine;
 
 public class PlayerComponent : MonoBehaviour
 {
-    private Vector3 playerMov;
+    [HideInInspector] public Vector3 playerMov;
     private Vector3 input;
     private Vector3 yVelocity;
 
     [SerializeField] private AudioManager audioManager;
     [SerializeField] private InputManager IM;
     [SerializeField] private GameObject characterModel;
+    [SerializeField] private LevelManager LM;
 
     [Header("Camera")]
     private Camera fpsCam;
@@ -119,6 +120,8 @@ public class PlayerComponent : MonoBehaviour
             characterModel = GameObject.Find("CharacterModel");
         if(!IM)
             IM = GameObject.Find("Input Manager").GetComponent<InputManager>();
+        if (!LM)
+            LM = GameObject.Find("Level Manager").GetComponent<LevelManager>();
     }
 
     private void Start()
@@ -128,6 +131,7 @@ public class PlayerComponent : MonoBehaviour
         crouchingCamPosition = fpsCam.transform.position.y / 2f;
         normalFov = fpsCam.fieldOfView;
         defaultYPos = fpsCam.transform.position.y;
+        transform.position = LM.startPosition;
     }
 
     void IncreaseSpeed(float speedIncrease)
@@ -335,14 +339,19 @@ public class PlayerComponent : MonoBehaviour
     private void MoveCameraToCrouch()
     {
         float yCam = fpsCam.transform.position.y;
-        yCam = Mathf.Lerp(yCam, crouchingCamPosition, cameraChangeTime * Time.deltaTime);
+        //yCam = Mathf.Lerp(yCam, crouchingCamPosition, cameraChangeTime * Time.deltaTime);
+        yCam = Mathf.Lerp(yCam, GameObject.Find("CrouchingCamera").transform.position.y, cameraChangeTime * Time.deltaTime);
+
         fpsCam.transform.position = new Vector3(fpsCam.transform.position.x, yCam, fpsCam.transform.position.z);
     }
 
     private void MoveCameraToStanding()
     {
         float yCam = fpsCam.transform.position.y;
-        yCam = Mathf.Lerp(yCam, startCamPosition, cameraChangeTime * Time.deltaTime);
+        //yCam = Mathf.Lerp(yCam, startCamPosition, cameraChangeTime * Time.deltaTime);
+        yCam = Mathf.Lerp(yCam, GameObject.Find("StandingCamera").transform.position.y, cameraChangeTime * Time.deltaTime);
+
+
         fpsCam.transform.position = new Vector3(fpsCam.transform.position.x, yCam, fpsCam.transform.position.z);
     }
 
@@ -368,14 +377,18 @@ public class PlayerComponent : MonoBehaviour
         HandleCamera();
         HandleInput();
         HandleAnimations();
+
     }
 
     void HandleCamera()
     {
-        startCamPosition = fpsCam.transform.position.y;
-        crouchingCamPosition = startCamPosition/1.5f;
         if ((isGrounded && !isSliding))
+        {
+            startCamPosition = fpsCam.transform.position.y;
+            crouchingCamPosition = startCamPosition / 1.5f;
             MoveCameraToStanding();
+        }
+            
 
     }
 
@@ -450,11 +463,11 @@ public class PlayerComponent : MonoBehaviour
 
             if(!mov.Equals(new Vector3(0,0,0)))
             {
-                controller.Move(mov * dashSpeed * Time.deltaTime);
+                //controller.Move(mov * dashSpeed * Time.deltaTime);
             }
             else
             {
-                controller.Move(transform.forward * dashSpeed * Time.deltaTime);
+                //controller.Move(transform.forward * dashSpeed * Time.deltaTime);
             }
             
             yield return null;
@@ -506,7 +519,6 @@ public class PlayerComponent : MonoBehaviour
         isWallRunning = false;
         lastWallNormal = wallNormal;
     }
-
     void HandleAnimations()
     {
         /*

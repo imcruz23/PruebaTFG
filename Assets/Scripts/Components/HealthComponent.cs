@@ -28,6 +28,10 @@ public class HealthComponent : MonoBehaviour
             Destroy(gameObject);
             return;
         }
+        else
+        {
+            Application.LoadLevel(Application.loadedLevel);
+        }
         print("Me he morido");
     }
 }

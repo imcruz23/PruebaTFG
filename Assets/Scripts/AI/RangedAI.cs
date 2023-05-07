@@ -5,6 +5,7 @@ using UnityEngine;
 public class RangedAI : AIComponent
 {
     private Transform spawnPoint;
+    public GameObject projectile;
     // Start is called before the first frame update
     void Awake()
     {
@@ -14,11 +15,13 @@ public class RangedAI : AIComponent
     public override void Attack()
     {
         RaycastHit hit;
-
+           
         // Vamos a intentar randomizar las balas para que algunas fallen
         float randomX = Random.Range(transform.forward.x - 0.2f, transform.forward.x + 0.2f);
         float randomY = Random.Range(transform.forward.y - 0.2f, transform.forward.y + 0.2f);
         Vector3 randomF = new Vector3(randomX, randomY, transform.forward.z);
+
+        InstantiateProjectile();
 
         // Raycast de disparo
         if (Physics.Raycast(spawnPoint.transform.position, randomF, out hit, base.attackRange))
@@ -37,5 +40,19 @@ public class RangedAI : AIComponent
             else
                 print("FALLE");
         }
+    }
+
+    private void InstantiateProjectile()
+    {
+        // Instanciar MuzzleFlash
+        projectile.transform.position = spawnPoint.position;
+        projectile.transform.forward = transform.forward;
+        projectile.gameObject.SetActive(true);
+        Invoke(nameof(DisableProjectile), 0.03f);
+    }
+
+    private void DisableProjectile()
+    {
+        projectile.gameObject.SetActive(false);
     }
 }

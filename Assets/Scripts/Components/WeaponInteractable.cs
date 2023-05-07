@@ -8,10 +8,10 @@ public class WeaponInteractable : Interactable
 {
     public int id;
 
-    private Image pickupBox;
-    private TMP_Text pickupText;
+    public Image pickupBox;
+    public TMP_Text pickupText;
     //private string pickupName;
-    private RawImage controlImage;
+    public RawImage controlImage;
 
     // Eventos cuando agarras un interactuable
     //public delegate void weaponPicked();

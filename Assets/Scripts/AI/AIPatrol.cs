@@ -27,6 +27,7 @@ public class AIPatrol : MonoBehaviour
     // Update is called once per frame
     void Update()
     {
+        transform.LookAt(player.transform);
         ai.playerInSightRange = Physics.CheckSphere(transform.position, ai.sightRange, playerMask);
         ai.playerInAttackRange = Physics.CheckSphere(transform.position, ai.attackRange, playerMask);
 
@@ -60,7 +61,6 @@ public class AIPatrol : MonoBehaviour
     {
         float randomX = Random.Range(-walkPointRange, walkPointRange);
         float randomZ = randomX;
-
         walkPoint = new Vector3(transform.position.x + randomX, transform.position.y, transform.position.z + randomZ);
 
         // Comprobar que el nuevo waypoint no esté fuera del mapa

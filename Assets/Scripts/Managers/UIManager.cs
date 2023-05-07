@@ -66,6 +66,7 @@ public class UIManager : MonoBehaviour
         pickupText.gameObject.SetActive(false);
         spreeText.gameObject.SetActive(false);
         inTimeText.gameObject.SetActive(false);
+
     }
 
     private void Update()

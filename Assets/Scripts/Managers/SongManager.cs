@@ -13,19 +13,19 @@ public class SongManager : MonoBehaviour
     public float bpm;
 
     // Los segundos por cada beat de la cancion
-    public float secPerBeat;
+    [HideInInspector] public float secPerBeat;
 
     // Posicion de la cancion en segundos
     public float songPosition;
 
     // Posicion de la cancion en beats
-    public float songPositionInBeats;
+    [HideInInspector] public float songPositionInBeats;
 
     // El tiempo que ha pasado desde que la cancion ha empezado (en segundos)
     public float dspSongTime;
 
     // El ligero retraso que puede tener la cancion
-    public float firstBeatOffset;
+    [HideInInspector] public float firstBeatOffset;
 
     // Las notas de la cancion en posiciones
     float[] notes = { 1f, 2f, 2.5f, 3f, 3.5f, 4.5f, 5f, 6f, 6.5f };
@@ -34,10 +34,10 @@ public class SongManager : MonoBehaviour
     int nextIndex = 0;
 
     // La cantidad de notas que quiero mostrar antes
-    public int beatsShownInAdvance;
+    [HideInInspector] public int beatsShownInAdvance;
 
     // El tiempo que quiero para poder hacer la accion
-    public float timeToAction;
+    [HideInInspector] public float timeToAction;
 
     // La nota
     public GameObject notePrefab;
@@ -45,10 +45,12 @@ public class SongManager : MonoBehaviour
     // Para evitar que se haga la comprobacion cada frame (no funciona)
     bool onTime;
 
-    [SerializeField] private GameObject activatorPoint;
+    private GameObject activatorPoint;
 
 
-    [SerializeField] private UIManager UIM;
+    private UIManager UIM;
+
+    public GameObject parent;
 
     private void Awake()
     {
@@ -80,7 +82,7 @@ public class SongManager : MonoBehaviour
 
         if(songPosition >= dspSongTime)
         {
-            Debug.Log("Beat!");
+            //Debug.Log("Beat!");
             SpawnNote();
             dspSongTime += secPerBeat;
         }
@@ -126,8 +128,8 @@ public class SongManager : MonoBehaviour
 
     void SpawnNote()
     {
-       print("Instancio nota");
-       Instantiate(notePrefab, GameObject.Find("Rythm").transform);
+       //print("Instancio nota");
+       Instantiate(notePrefab, parent.transform);
     }
 
 

@@ -23,7 +23,12 @@ public class AIComponent : MonoBehaviour
         if(!UIM)
             UIM = GameObject.Find("UI Manager").GetComponent<UIManager>();
     }
-
+    // Mirando al rival
+    protected void Update()
+    {
+        transform.LookAt(player.transform);
+        transform.rotation = Quaternion.LookRotation(transform.position - player.transform.position);
+    }
 
     public virtual void Attack()
     {

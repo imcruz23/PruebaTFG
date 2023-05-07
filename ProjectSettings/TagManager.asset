@@ -48,6 +48,9 @@ TagManager:
   - name: Weapons
     uniqueID: 2996549745
     locked: 0
+  - name: Door
+    uniqueID: 2817114735
+    locked: 0
   - name: Floor
     uniqueID: 3704831143
     locked: 0

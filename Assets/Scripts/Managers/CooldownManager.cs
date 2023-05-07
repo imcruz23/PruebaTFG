@@ -10,6 +10,7 @@ public class CooldownManager : MonoBehaviour
     [SerializeField] private RawImage slideIcon;
     [SerializeField] private PlayerComponent PC;
     [SerializeField] private Image dashCooldown;
+    [SerializeField] private Image slideCooldown;
 
     // 0-1 DASH
     // 2-3 SLIDE
@@ -29,6 +30,7 @@ public class CooldownManager : MonoBehaviour
     private void Start()
     {
         dashCooldown.gameObject.SetActive(false);
+        slideCooldown.gameObject.SetActive(false);
         if (dashIcon)
             dashIcon.texture = sprites[0];
 
