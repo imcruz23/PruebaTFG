@@ -12,6 +12,7 @@ public class AIComponent : MonoBehaviour
     [SerializeField] protected GameObject player;
     [SerializeField] protected LevelManager LM;
     [SerializeField] protected UIManager UIM;
+    public AudioManager AM;
 
     protected void Awake()
     {
@@ -22,6 +23,8 @@ public class AIComponent : MonoBehaviour
             LM = GameObject.Find("Level Manager").GetComponent<LevelManager>();
         if(!UIM)
             UIM = GameObject.Find("UI Manager").GetComponent<UIManager>();
+        if (!AM)
+            AM = GameObject.Find("Audio Manager").GetComponent<AudioManager>();
     }
     // Mirando al rival
     protected void Update()

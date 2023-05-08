@@ -469,7 +469,7 @@ public class PlayerComponent : MonoBehaviour
             {
                 //controller.Move(transform.forward * dashSpeed * Time.deltaTime);
             }
-            
+            audioManager.PlayPlayerDashSound();
             yield return null;
         }
     }

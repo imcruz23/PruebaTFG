@@ -6,6 +6,7 @@ public class RangedAI : AIComponent
 {
     private Transform spawnPoint;
     public GameObject projectile;
+ 
     // Start is called before the first frame update
     void Awake()
     {
@@ -15,10 +16,10 @@ public class RangedAI : AIComponent
     public override void Attack()
     {
         RaycastHit hit;
-           
+        AM.PlayEnemyShootingSound();
         // Vamos a intentar randomizar las balas para que algunas fallen
-        float randomX = Random.Range(transform.forward.x - 0.2f, transform.forward.x + 0.2f);
-        float randomY = Random.Range(transform.forward.y - 0.2f, transform.forward.y + 0.2f);
+        float randomX = Random.Range(transform.forward.x - 0.1f, transform.forward.x + 0.1f);
+        float randomY = Random.Range(transform.forward.y - 0.1f, transform.forward.y + 0.1f);
         Vector3 randomF = new Vector3(randomX, randomY, transform.forward.z);
 
         InstantiateProjectile();

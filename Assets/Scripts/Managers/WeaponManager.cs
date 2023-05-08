@@ -214,6 +214,7 @@ public class WeaponManager : MonoBehaviour
     private void ReloadWeapon()
     {
         WeaponSwitching.SetSwitch(false);
+        audioManager.PlayReloadingSound(weaponId);
         reloading = true;
         animator.SetBool("reloading", true);
         Invoke(nameof(ReloadFinished), timeToReload);
