@@ -2,6 +2,7 @@ using System.Collections;
 using System.Collections.Generic;
 using UnityEngine;
 using UnityEngine.SceneManagement;
+using UnityEngine.EventSystems;
 
 public class MainMenu : MonoBehaviour
 {
@@ -11,6 +12,7 @@ public class MainMenu : MonoBehaviour
     private GameObject prevScreen;
     private GameObject activeScreen;
     public UIManager UIM;
+    public GameObject sliderFirst, tutorialFirst, playFirst;
     public void SelectLevel() 
     {
         activeScreen = screen2;
@@ -18,6 +20,11 @@ public class MainMenu : MonoBehaviour
         //SceneManager.LoadScene("Level_Selector");
         prevScreen.SetActive(false);
         activeScreen.SetActive(true);
+
+        // Limpiar la navegacion
+        EventSystem.current.SetSelectedGameObject(null);
+        // Poner el nuevo primer item
+        EventSystem.current.SetSelectedGameObject(tutorialFirst);
     }
 
     public void GoToLevel(int id)
@@ -38,11 +45,19 @@ public class MainMenu : MonoBehaviour
         activeScreen = screenOptions;
         prevScreen.SetActive(false);
         activeScreen.SetActive(true);
+        // Limpiar la navegacion
+        EventSystem.current.SetSelectedGameObject(null);
+        // Poner el nuevo primer item
+        EventSystem.current.SetSelectedGameObject(sliderFirst);
     }
     public void GoBack()
     {
         activeScreen.SetActive(false);
         prevScreen.SetActive(true);
+        // Limpiar la navegacion
+        EventSystem.current.SetSelectedGameObject(null);
+        // Poner el nuevo primer item
+        EventSystem.current.SetSelectedGameObject(playFirst);
     }
 
     public void ResumeGame()
