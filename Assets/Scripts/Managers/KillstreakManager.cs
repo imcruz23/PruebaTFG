@@ -10,6 +10,10 @@ public class KillstreakManager : MonoBehaviour
     [SerializeField] private UIManager UIM;
 
     // Update is called once per frame
+    private void Awake()
+    {
+        enemiesKilled = 0;
+    }
     void FixedUpdate()
     {
         if (enemiesKilled <= 0)

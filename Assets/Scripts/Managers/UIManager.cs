@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using UnityEngine;
 using TMPro;
 using UnityEngine.UI;
+using UnityEngine.SceneManagement;
 
 
 public class UIManager : MonoBehaviour
@@ -35,6 +36,9 @@ public class UIManager : MonoBehaviour
     // En tiempo
     [SerializeField] private TMP_Text inTimeText;
 
+    // Cosas del menu de pausa
+    public static bool pauseState = false;
+    public GameObject pauseScreen;
 
     private void Awake()
     {
@@ -58,6 +62,8 @@ public class UIManager : MonoBehaviour
             healthC = GameObject.Find("Character").GetComponent<HealthComponent>();
         if(!healthBar)
             healthBar = GameObject.Find("Health Bar").GetComponent<Image>();
+        if (!pauseScreen)
+            pauseScreen = GameObject.Find("PauseScreen");
     }
 
     private void Start()
@@ -73,6 +79,37 @@ public class UIManager : MonoBehaviour
     {
         DrawScore();
         healthBar.rectTransform.sizeDelta = new Vector2(healthC.life, 100);
+
+        if (IM.pauseM.WasPressedThisFrame())
+        {
+            pauseState = !pauseState;
+
+            if (pauseState)
+                PauseGame();
+            else
+                ResumeGame();
+        }
+    }
+
+    private void PauseGame()
+    {
+        pauseScreen.SetActive(true);
+        Cursor.visible = true;
+        Cursor.lockState = CursorLockMode.None;
+        IM.DisableInGameControls();
+        Time.timeScale = 0;
+        pauseState = true;
+    }
+
+    public void ResumeGame()
+    {
+        pauseScreen.SetActive(false);
+        Cursor.visible = false;
+        Cursor.lockState = CursorLockMode.Locked;
+        IM.EnableInGameControls(); 
+        Time.timeScale = 1;
+        this.pauseScreen.SetActive(false);
+        pauseState = false;
     }
 
     public void DrawTriggerBox()

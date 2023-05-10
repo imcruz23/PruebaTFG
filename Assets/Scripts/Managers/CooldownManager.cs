@@ -10,7 +10,7 @@ public class CooldownManager : MonoBehaviour
     [SerializeField] private RawImage slideIcon;
     [SerializeField] private PlayerComponent PC;
     [SerializeField] private Image dashCooldown;
-    [SerializeField] private Image slideCooldown;
+    [SerializeField] private RawImage slideCooldown;
 
     // 0-1 DASH
     // 2-3 SLIDE

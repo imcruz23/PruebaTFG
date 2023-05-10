@@ -35,7 +35,10 @@ public class BossAI : AIComponent
                 Quaternion.identity
                 );
         bullet.transform.forward = transform.forward;
-        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * force);
+        //var _ydistance = transform.position.y - player.transform.position.y;
+        float _xdistance = Mathf.Abs(transform.position.x - player.transform.position.x);
+        float _force = force * _xdistance;
+        bullet.GetComponent<Rigidbody>().AddForce(transform.forward * _force);
         
             /*
             print("PIUM");

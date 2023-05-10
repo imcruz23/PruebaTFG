@@ -30,6 +30,8 @@ public class HealthInteractable : Interactable
     protected override void OnTriggerEnter(Collider other)
     {
         base.OnTriggerEnter(other);
+        PC.audioManager.PlayPlayerHealSound();
+
     }
 
     protected override void OnTriggerExit(Collider other)

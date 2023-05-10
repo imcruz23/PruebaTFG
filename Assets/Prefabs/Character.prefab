@@ -1,5 +1,67 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &1631038779
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1631038780}
+  m_Layer: 7
+  m_Name: CrouchingCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1631038780
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1631038779}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: -0.061, z: 0.4910002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8596617619994377695}
+  m_RootOrder: 4
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!1 &1734841662
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 1734841663}
+  m_Layer: 7
+  m_Name: StandingCamera
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &1734841663
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 1734841662}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0.611, z: 0.4910002}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8596617619994377695}
+  m_RootOrder: 3
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
 --- !u!1 &8596617619152600491
 GameObject:
   m_ObjectHideFlags: 0
@@ -204,7 +266,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8596617619994377688}
-  m_LocalRotation: {x: -0, y: 0.9996854, z: -0, w: -0.02508196}
+  m_LocalRotation: {x: 0, y: 0.9996856, z: -0, w: -0.025077544}
   m_LocalPosition: {x: -15.5, y: -0.17, z: 205.2}
   m_LocalScale: {x: 1, y: 1, z: 1}
   m_ConstrainProportionsScale: 0
@@ -212,6 +274,8 @@ Transform:
   - {fileID: 8596617621097264724}
   - {fileID: 8596617620078268976}
   - {fileID: 8596617619985732063}
+  - {fileID: 1734841663}
+  - {fileID: 1631038780}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 182.874, z: 0}
@@ -302,7 +366,6 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e33245c721f40174f9a739b964f96e05, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  mouseSens: 10
   fpsCam: {fileID: 8596617621097264725}
 --- !u!114 &8596617619994377667
 MonoBehaviour:
@@ -317,7 +380,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   maxLife: 100
-  life: 80
+  life: 100
 --- !u!114 &8596617619994377666
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -663,7 +726,6 @@ GameObject:
   - component: {fileID: 8596617621097264726}
   - component: {fileID: 8596617619556544085}
   - component: {fileID: 8596617619556544095}
-  - component: {fileID: 8596617619556544094}
   - component: {fileID: 8596617619556544093}
   m_Layer: 0
   m_Name: Main_Camera
@@ -768,21 +830,6 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   selectedWeapon: 0
-  player: {fileID: 8596617619994377693}
---- !u!114 &8596617619556544094
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8596617621097264720}
-  m_Enabled: 0
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 05c6607f2d279774bad920c2984422dd, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  _crosshair: {fileID: 0}
-  fpsCam: {fileID: 8596617621097264725}
   player: {fileID: 8596617619994377693}
 --- !u!114 &8596617619556544093
 MonoBehaviour:
@@ -1071,7 +1118,7 @@ PrefabInstance:
       objectReference: {fileID: 8596617621097264725}
     - target: {fileID: 5314962843478547877, guid: 248280f4c7fbebf4da370148c4448847, type: 3}
       propertyPath: range
-      value: 100
+      value: 50
       objectReference: {fileID: 0}
     - target: {fileID: 5314962843478547877, guid: 248280f4c7fbebf4da370148c4448847, type: 3}
       propertyPath: rythm
@@ -1151,7 +1198,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5314962843478547877, guid: 248280f4c7fbebf4da370148c4448847, type: 3}
       propertyPath: bulletsInCharger
-      value: 600
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5314962843478547898, guid: 248280f4c7fbebf4da370148c4448847, type: 3}
       propertyPath: swayAmount
@@ -1544,7 +1591,7 @@ PrefabInstance:
       objectReference: {fileID: 8596617621097264725}
     - target: {fileID: 5410415594803505830, guid: b8188cb138240924883715985a00d24e, type: 3}
       propertyPath: range
-      value: 100
+      value: 30
       objectReference: {fileID: 0}
     - target: {fileID: 5410415594803505830, guid: b8188cb138240924883715985a00d24e, type: 3}
       propertyPath: rythm
@@ -1652,7 +1699,7 @@ PrefabInstance:
       objectReference: {fileID: 0}
     - target: {fileID: 5410415594803505830, guid: b8188cb138240924883715985a00d24e, type: 3}
       propertyPath: bulletsInCharger
-      value: 7
+      value: 12
       objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_SourcePrefab: {fileID: 100100000, guid: b8188cb138240924883715985a00d24e, type: 3}
@@ -1890,6 +1937,39 @@ Animator:
   m_HasTransformHierarchy: 1
   m_AllowConstantClipSamplingOptimization: 1
   m_KeepAnimatorControllerStateOnDisable: 0
+--- !u!114 &8596617620645041677
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8596617620388505647}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 1822fbb00291e4544a003b35d32405f2, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  weaponId: 0
+  cam: {fileID: 8596617621097264725}
+  spawnPoint: {fileID: 8596617619631009192}
+  projectile: {fileID: 0}
+  shootRate: 0.9
+  range: 20
+  weaponDamage: 30
+  allowHoldButton: 0
+  spread: 0.1
+  bulletsInCharger: 8
+  timeToReload: 2.3
+  bulletsPerTap: 4
+  burstBullets: 1
+  bulletText: {fileID: 0}
+  impactEffect: {fileID: 0}
+  backAmount: 0.04
+  audioManager: {fileID: 0}
+  IM: {fileID: 0}
+  UIM: {fileID: 0}
+  WS: {fileID: 8596617619556544095}
+  rythmMechanic: {fileID: 0}
 --- !u!114 &8596617620645041678
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1911,36 +1991,3 @@ MonoBehaviour:
   rotationX: 1
   rotationY: 1
   rotationZ: 1
---- !u!114 &8596617620645041677
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_CorrespondingSourceObject: {fileID: 0}
-  m_PrefabInstance: {fileID: 0}
-  m_PrefabAsset: {fileID: 0}
-  m_GameObject: {fileID: 8596617620388505647}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: 1822fbb00291e4544a003b35d32405f2, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  weaponId: 0
-  cam: {fileID: 8596617621097264725}
-  spawnPoint: {fileID: 8596617619631009192}
-  projectile: {fileID: 0}
-  shootRate: 0.9
-  range: 50
-  weaponDamage: 10
-  allowHoldButton: 0
-  spread: 0.1
-  bulletsInCharger: 8
-  timeToReload: 2.3
-  bulletsPerTap: 4
-  burstBullets: 1
-  bulletText: {fileID: 0}
-  impactEffect: {fileID: 0}
-  backAmount: 0.04
-  audioManager: {fileID: 0}
-  IM: {fileID: 0}
-  UIM: {fileID: 0}
-  WS: {fileID: 8596617619556544095}
-  rythmMechanic: {fileID: 0}

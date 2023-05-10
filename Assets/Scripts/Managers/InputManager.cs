@@ -17,6 +17,8 @@ public class InputManager : MonoBehaviour
     [HideInInspector] public InputAction change;
     [HideInInspector] public InputAction interact;
     [HideInInspector] public InputAction switchW;
+    [HideInInspector] public InputAction pauseM;
+
 
     private void Awake()
     {
@@ -54,6 +56,9 @@ public class InputManager : MonoBehaviour
 
         switchW = playerControls.Player.Switch;
         switchW.Enable();
+
+        pauseM = playerControls.Player.PauseMenu;
+        pauseM.Enable();
     }
 
     private void OnDisable()
@@ -68,13 +73,50 @@ public class InputManager : MonoBehaviour
         change.Disable();
         interact.Disable();
         switchW.Disable();
+        pauseM.Disable();
+    }
+
+    public void DisableInGameControls()
+    {
+        move.Disable();
+        fire.Disable();
+        dash.Disable();
+        slide.Disable();
+        look.Disable();
+        jump.Disable();
+        reload.Disable();
+        change.Disable();
+        interact.Disable();
+        switchW.Disable();
+        look.Disable();
+    }
+
+    public void EnableInGameControls()
+    {
+        move.Enable();
+        fire.Enable();
+        dash.Enable();
+        slide.Enable();
+        look.Enable();
+        jump.Enable();
+        reload.Enable();
+        change.Enable();
+        interact.Enable();
+        switchW.Enable();
+    }
+
+
+    public void EnablePauseControls()
+    {
+        pauseM.Enable();
     }
 
     private void Update()
     {
+        /*
         if (Input.GetKeyDown(KeyCode.Escape))
         {
             Application.Quit();
-        }
+        }*/
     }
 }

@@ -8,7 +8,7 @@ public class PlayerComponent : MonoBehaviour
     private Vector3 input;
     private Vector3 yVelocity;
 
-    [SerializeField] private AudioManager audioManager;
+    public AudioManager audioManager;
     [SerializeField] private InputManager IM;
     [SerializeField] private GameObject characterModel;
     [SerializeField] private LevelManager LM;
@@ -29,7 +29,7 @@ public class PlayerComponent : MonoBehaviour
     public float runSpeed;
     public float airSpeed;
 
-    float speed;
+    [HideInInspector] public float speed;
 
     [Header("Collisions")]
     public Transform groundCheck; // Empty que tiene el jugador
@@ -388,8 +388,7 @@ public class PlayerComponent : MonoBehaviour
             crouchingCamPosition = startCamPosition / 1.5f;
             MoveCameraToStanding();
         }
-            
-
+           
     }
 
     private void FixedUpdate()
@@ -463,11 +462,11 @@ public class PlayerComponent : MonoBehaviour
 
             if(!mov.Equals(new Vector3(0,0,0)))
             {
-                //controller.Move(mov * dashSpeed * Time.deltaTime);
+                controller.Move(mov * dashSpeed * Time.deltaTime);
             }
             else
             {
-                //controller.Move(transform.forward * dashSpeed * Time.deltaTime);
+                controller.Move(transform.forward * dashSpeed * Time.deltaTime);
             }
             audioManager.PlayPlayerDashSound();
             yield return null;
@@ -559,4 +558,5 @@ public class PlayerComponent : MonoBehaviour
             health.life += l;
         }
     }
+
 }

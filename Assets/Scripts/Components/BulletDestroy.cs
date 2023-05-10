@@ -24,7 +24,7 @@ public class BulletDestroy : MonoBehaviour
         else if (other.gameObject.layer == (int)Layers.Player)
         {
             var health = other.gameObject.GetComponent<HealthComponent>() as HealthComponent;
-            health.life -= 10;
+            health.TakeDamage(10);
             DestroyBullet();
         }
     }

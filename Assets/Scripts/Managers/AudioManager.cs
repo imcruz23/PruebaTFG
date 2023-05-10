@@ -26,7 +26,7 @@ public class AudioManager : MonoBehaviour
         AudioSource[] audioSources = GetComponents<AudioSource>();
         musicSource = audioSources[0];
         sourceVFX = audioSources[1];
-
+        AudioListener.volume = PlayerPrefs.GetFloat("audioVolume");
     }
 
     private void Init()
@@ -61,7 +61,18 @@ public class AudioManager : MonoBehaviour
     {
         sourceVFX.clip = playerClips[3];
         if (!sourceVFX.isPlaying)
-            sourceVFX.Play();
+           sourceVFX.PlayOneShot(playerClips[3], 0.4f);
+    }
+    public void PlayPlayerDamageSound()
+    {
+        sourceVFX.clip = playerClips[4];
+        if (!sourceVFX.isPlaying)
+            sourceVFX.PlayOneShot(playerClips[4], 1.2f);
+    }
+
+    public void PlayPlayerHealSound()
+    {
+        sourceVFX.PlayOneShot(playerClips[5], 0.4f);
     }
 
     // Controlador de disparo
@@ -105,6 +116,11 @@ public class AudioManager : MonoBehaviour
     public void PlayEnemyShootingSound()
     {
         sourceVFX.PlayOneShot(enemyClips[0], 0.6f);
+    }
+
+    public void PlayEnemyDamageSound()
+    {
+        sourceVFX.PlayOneShot(enemyClips[1], 0.6f);
     }
 
 }

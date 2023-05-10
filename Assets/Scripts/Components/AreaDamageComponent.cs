@@ -36,6 +36,6 @@ public class AreaDamageComponent : MonoBehaviour
     {
         // Restamos vida al jugador de forma progresiva
         HealthComponent hc = player.GetComponent<HealthComponent>();
-         hc.life -= 1;
+        hc.TakeDamage(1);
     }
 }

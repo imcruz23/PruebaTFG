@@ -6,7 +6,7 @@ public class MouseComponent : MonoBehaviour
 {
 
 
-    public float mouseSens;  // Sensibilidad universal del ratón
+    public float mouseSens = 10f;  // Sensibilidad universal del ratón
     public Camera fpsCam;    // El jugador
     float xRot = 0f;         // Para evitar el clamping
     private PlayerComponent move;
@@ -20,6 +20,9 @@ public class MouseComponent : MonoBehaviour
         Cursor.lockState = CursorLockMode.Locked;
         TryGetComponent(out move);
         IM = GameObject.Find("Input Manager").GetComponent<InputManager>();
+        if (PlayerPrefs.GetFloat("sens") > 1)
+           mouseSens = PlayerPrefs.GetFloat("sens");
+
     }
 
     // Update is called once per frame
@@ -34,7 +37,8 @@ public class MouseComponent : MonoBehaviour
         // Actualización Ratón
         //float mouseX = Input.GetAxis("Mouse X") * mouseSens * Time.deltaTime;
         //float mouseY = Input.GetAxis("Mouse Y") * mouseSens * Time.deltaTime;
-        Vector2 mouse = IM.look.ReadValue<Vector2>();
+        
+         Vector2 mouse = IM.look.ReadValue<Vector2>();
         float mouseX = mouse.x * sens * Time.deltaTime;
         float mouseY = mouse.y * sens * Time.deltaTime;
 

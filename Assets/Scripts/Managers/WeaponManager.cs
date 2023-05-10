@@ -184,6 +184,7 @@ public class WeaponManager : MonoBehaviour
                 if (hc != null)
                 {
                     hc.TakeDamage(weaponDamage_);
+                    audioManager.PlayEnemyDamageSound();
                 }
             }
         }

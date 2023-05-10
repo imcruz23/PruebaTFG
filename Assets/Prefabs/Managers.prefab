@@ -1,5 +1,83 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &761062001
+GameObject:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  serializedVersion: 6
+  m_Component:
+  - component: {fileID: 761062002}
+  - component: {fileID: 761062003}
+  - component: {fileID: 761062005}
+  - component: {fileID: 761062004}
+  m_Layer: 0
+  m_Name: Menu Manager
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &761062002
+Transform:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761062001}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 0, y: 0, z: 0}
+  m_LocalScale: {x: 1, y: 1, z: 1}
+  m_ConstrainProportionsScale: 0
+  m_Children: []
+  m_Father: {fileID: 8558992263015729400}
+  m_RootOrder: 6
+  m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &761062003
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761062001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8064fe87957844a98985a1d5827902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen1: {fileID: 0}
+  screen2: {fileID: 0}
+  screenOptions: {fileID: 0}
+  UIM: {fileID: 8558992262599596194}
+--- !u!114 &761062005
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761062001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 84ef9a964987b8749926d7c9c33a0440, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  sliderValue: 0
+--- !u!114 &761062004
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 761062001}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 0f5abe830d8bb5045b9049ea5a61450a, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  slider: {fileID: 0}
+  sliderValue: 0
 --- !u!1 &8558992262502996062
 GameObject:
   m_ObjectHideFlags: 0
@@ -50,12 +128,16 @@ MonoBehaviour:
   musicSource: {fileID: 0}
   pistolClips:
   - {fileID: 8300000, guid: 61fd406e51cc57c4bbefcde822fcddde, type: 3}
+  - {fileID: 8300000, guid: a1192ed9c90c8d549b0e78143b935224, type: 3}
   playerClips:
   - {fileID: 8300000, guid: 1fd30a6005f56894d813e089acb88528, type: 3}
-  - {fileID: 8300000, guid: f3c35a883246a66428544f147b65d0c5, type: 3}
+  - {fileID: 8300000, guid: ab9ac8140acdccc41a4285d4f8db59cb, type: 3}
   - {fileID: 8300000, guid: cec8cc7d2ce4f7b41ac1c19552ab62da, type: 3}
+  - {fileID: 8300000, guid: e4ceadc262a5edb4b8bc13e7f87ed257, type: 3}
   arClips:
   - {fileID: 8300000, guid: 45ef393933b256e4796c3fce8c04e101, type: 3}
+  enemyClips:
+  - {fileID: 8300000, guid: 9091169ac53af7b4e9b38305a75a4966, type: 3}
 --- !u!82 &8558992262502996057
 AudioSource:
   m_ObjectHideFlags: 0
@@ -66,11 +148,11 @@ AudioSource:
   m_Enabled: 1
   serializedVersion: 4
   OutputAudioMixerGroup: {fileID: 0}
-  m_audioClip: {fileID: 8300000, guid: a148e631d8d8c3648bbc3655523be2fc, type: 3}
+  m_audioClip: {fileID: 8300000, guid: fd38754b7c269e34bbdb7c3c4dd90d7d, type: 3}
   m_PlayOnAwake: 0
-  m_Volume: 0.042
+  m_Volume: 0.308
   m_Pitch: 1
-  Loop: 0
+  Loop: 1
   Mute: 0
   Spatialize: 0
   SpatializePostEffects: 0
@@ -334,6 +416,7 @@ MonoBehaviour:
   healthC: {fileID: 0}
   healthBar: {fileID: 0}
   inTimeText: {fileID: 0}
+  pauseScreen: {fileID: 0}
 --- !u!114 &8558992262599596221
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -350,6 +433,7 @@ MonoBehaviour:
   slideIcon: {fileID: 0}
   PC: {fileID: 0}
   dashCooldown: {fileID: 0}
+  slideCooldown: {fileID: 0}
   sprites: []
 --- !u!1 &8558992262841392581
 GameObject:
@@ -486,6 +570,15 @@ MonoBehaviour:
     m_Interactions: 
     m_SingletonActionBindings: []
     m_Flags: 0
+  pauseM:
+    m_Name: 
+    m_Type: 0
+    m_ExpectedControlType: 
+    m_Id: 
+    m_Processors: 
+    m_Interactions: 
+    m_SingletonActionBindings: []
+    m_Flags: 0
 --- !u!1 &8558992263015729401
 GameObject:
   m_ObjectHideFlags: 0
@@ -495,6 +588,8 @@ GameObject:
   serializedVersion: 6
   m_Component:
   - component: {fileID: 8558992263015729400}
+  - component: {fileID: 156518682}
+  - component: {fileID: 156518683}
   m_Layer: 0
   m_Name: Managers
   m_TagString: Untagged
@@ -509,7 +604,7 @@ Transform:
   m_PrefabInstance: {fileID: 0}
   m_PrefabAsset: {fileID: 0}
   m_GameObject: {fileID: 8558992263015729401}
-  m_LocalRotation: {x: -0, y: -0, z: -0, w: 1}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
   m_LocalPosition: {x: 33.398003, y: -0.20200348, z: 149.53972}
   m_LocalScale: {x: 1, y: 1.0000001, z: 0.99999994}
   m_ConstrainProportionsScale: 0
@@ -520,9 +615,42 @@ Transform:
   - {fileID: 8558992262502996056}
   - {fileID: 8558992263508834235}
   - {fileID: 8558992262841392583}
+  - {fileID: 761062002}
   m_Father: {fileID: 0}
   m_RootOrder: 0
   m_LocalEulerAnglesHint: {x: 0, y: 0, z: 0}
+--- !u!114 &156518682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558992263015729401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8064fe87957844a98985a1d5827902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen1: {fileID: 0}
+  screen2: {fileID: 0}
+  screenOptions: {fileID: 0}
+  UIM: {fileID: 0}
+--- !u!114 &156518683
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_CorrespondingSourceObject: {fileID: 0}
+  m_PrefabInstance: {fileID: 0}
+  m_PrefabAsset: {fileID: 0}
+  m_GameObject: {fileID: 8558992263015729401}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 9e8064fe87957844a98985a1d5827902, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  screen1: {fileID: 0}
+  screen2: {fileID: 0}
+  screenOptions: {fileID: 0}
+  UIM: {fileID: 0}
 --- !u!1 &8558992263195613458
 GameObject:
   m_ObjectHideFlags: 0
@@ -676,8 +804,9 @@ MonoBehaviour:
   slideIcon: {fileID: 0}
   PC: {fileID: 0}
   dashCooldown: {fileID: 0}
+  slideCooldown: {fileID: 0}
   sprites:
   - {fileID: 2800000, guid: cab2334f79d2bf24b9d98679cd2a123b, type: 3}
   - {fileID: 2800000, guid: bce25114ab75539418a8678396536c72, type: 3}
-  - {fileID: 2800000, guid: bce25114ab75539418a8678396536c72, type: 3}
-  - {fileID: 2800000, guid: cab2334f79d2bf24b9d98679cd2a123b, type: 3}
+  - {fileID: 2800000, guid: bac0a8c23b0f92748861fef8fba92bd1, type: 3}
+  - {fileID: 2800000, guid: 1617e79ae5daff544a018f94607a0b78, type: 3}

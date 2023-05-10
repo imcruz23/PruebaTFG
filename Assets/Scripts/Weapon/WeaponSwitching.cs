@@ -25,7 +25,7 @@ public class WeaponSwitching : MonoBehaviour
         {
             ChangeWeaponWithMouse();
             ChangeWeaponWithGamePad();
-            ChangeWeaponWithKeyboard();
+            //ChangeWeaponWithKeyboard();
         }
     }
 
@@ -33,6 +33,7 @@ public class WeaponSwitching : MonoBehaviour
     {
         canSwitch = b;
     }
+    /*
     private void ChangeWeaponWithKeyboard()
     {
         if(Input.GetKeyDown(KeyCode.Alpha1))
@@ -46,6 +47,7 @@ public class WeaponSwitching : MonoBehaviour
 
         SelectWeapon();
     }
+    */
 
     private void ChangeWeaponWithMouse()
     {
@@ -78,7 +80,7 @@ public class WeaponSwitching : MonoBehaviour
             SelectWeapon();
         }
     }
-
+    
     private void ChangeWeaponWithGamePad()
     {
         int prevWeapon = selectedWeapon;
