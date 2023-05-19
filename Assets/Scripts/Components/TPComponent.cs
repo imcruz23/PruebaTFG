@@ -8,6 +8,10 @@ public class TPComponent : MonoBehaviour
 
     private void OnDestroy()
     {
+        if (model)
         model.SetActive(true);
+
+        //Instantiate(model, new Vector3(-416.88f, -7.33f, -573.41f), Quaternion.identity);
+        //model.SetActive(true);
     }
 }

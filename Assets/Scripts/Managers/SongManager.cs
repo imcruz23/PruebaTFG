@@ -25,40 +25,42 @@ public class SongManager : MonoBehaviour
     public float dspSongTime;
 
     // El ligero retraso que puede tener la cancion
-    [HideInInspector] public float firstBeatOffset;
+    //[HideInInspector] public float firstBeatOffset;
 
     // Las notas de la cancion en posiciones
-    float[] notes = { 1f, 2f, 2.5f, 3f, 3.5f, 4.5f, 5f, 6f, 6.5f };
+    //float[] notes = { 1f, 2f, 2.5f, 3f, 3.5f, 4.5f, 5f, 6f, 6.5f };
 
     // El siguiente indice de la nota que debe aparecer
-    int nextIndex = 0;
+    //int nextIndex = 0;
 
     // La cantidad de notas que quiero mostrar antes
-    [HideInInspector] public int beatsShownInAdvance;
+    //[HideInInspector] public int beatsShownInAdvance;
 
     // El tiempo que quiero para poder hacer la accion
-    [HideInInspector] public float timeToAction;
+    //[HideInInspector] public float timeToAction;
 
     // La nota
-    public GameObject notePrefab;
+    //public GameObject notePrefab;
 
     // Para evitar que se haga la comprobacion cada frame (no funciona)
     bool onTime;
 
-    private GameObject activatorPoint;
+    //private GameObject activatorPoint;
 
 
-    private UIManager UIM;
+    //private UIManager UIM;
 
-    public GameObject parent;
+    //public GameObject parent;
+
+    public GameObject noteContainer;
 
     private void Awake()
     {
         TryGetComponent(out AM);
-        if (!UIM)
-            UIM = GameObject.Find("UI Manager").GetComponent<UIManager>();
-        if (!activatorPoint)
-            activatorPoint = GameObject.Find("GoTo");
+        //if (!UIM)
+            //UIM = GameObject.Find("UI Manager").GetComponent<UIManager>();
+        //if (!activatorPoint)
+            //activatorPoint = GameObject.Find("GoTo");
     }
     // Start is called before the first frame update
     void Start()
@@ -78,11 +80,12 @@ public class SongManager : MonoBehaviour
     void FixedUpdate()
     {
 
+        
         songPosition += Time.deltaTime;
 
-        if(songPosition >= dspSongTime)
+        if (songPosition >= dspSongTime)
         {
-            //Debug.Log("Beat!");
+            Debug.Log("Beat!");
             SpawnNote();
             dspSongTime += secPerBeat;
         }
@@ -128,8 +131,8 @@ public class SongManager : MonoBehaviour
 
     void SpawnNote()
     {
-       //print("Instancio nota");
-       Instantiate(notePrefab, parent.transform);
+        if (noteContainer.gameObject.activeSelf == false)
+            noteContainer.gameObject.SetActive(true);
     }
 
 

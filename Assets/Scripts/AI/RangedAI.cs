@@ -41,6 +41,8 @@ public class RangedAI : AIComponent
             else
                 print("FALLE");
         }
+
+        DisableProjectile();
     }
 
     private void InstantiateProjectile()
@@ -54,6 +56,7 @@ public class RangedAI : AIComponent
 
     private void DisableProjectile()
     {
-        projectile.gameObject.SetActive(false);
+        if (projectile.activeSelf)
+            projectile.gameObject.SetActive(false);
     }
 }

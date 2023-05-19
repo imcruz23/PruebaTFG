@@ -169,7 +169,7 @@ public class PlayerComponent : MonoBehaviour
         input = transform.TransformDirection(input);
         input = Vector3.ClampMagnitude(input, 1f);
 
-        if (IM.jump.WasPressedThisFrame() && jumps > 0)
+        if (IM.jump.WasPressedThisFrame() && jumps > 0 && (isGrounded || isSliding || isJumping))
         {
             Jump();
             // La resta tiene que estar aqu� porque dentro de la funci�n da muchos problemas
@@ -192,7 +192,7 @@ public class PlayerComponent : MonoBehaviour
             Invoke(nameof(ExitSlide), 0.5f);
         }
         
-        HeadBobMovement();
+        //HeadBobMovement();
     }
     void GroundMovement()
     {
@@ -225,7 +225,6 @@ public class PlayerComponent : MonoBehaviour
     {
         playerMov.x += input.x * airSpeed;
         playerMov.z += input.z * airSpeed;
-
         playerMov = Vector3.ClampMagnitude(playerMov, speed);
     }
 
@@ -236,10 +235,10 @@ public class PlayerComponent : MonoBehaviour
         playerMov = Vector3.ClampMagnitude(playerMov, speed);
     }
 
-    void DashMovement()
+    /*void DashMovement()
     {
         controller.Move(forwardDirection * dashSpeed * Time.deltaTime);
-    }
+    }*/
 
     void WallRunMovement()
     {
@@ -258,10 +257,10 @@ public class PlayerComponent : MonoBehaviour
         playerMov = Vector3.ClampMagnitude(playerMov, speed);
     }
 
-    void HeadBobMovement()
+    /*void HeadBobMovement()
     {
         if (!isGrounded) return;
-        /*
+        
         if(Mathf.Abs(playerMov.x) > 0.1f || Mathf.Abs(playerMov.z) > 0.1f)
         {
             timer += Time.deltaTime * walkBobSpeed;
@@ -271,13 +270,15 @@ public class PlayerComponent : MonoBehaviour
                 fpsCam.transform.localPosition.z
                 );
         }
-        */
+        
     }
+    */
 
     void ApplyGravity()
     {
         gravity = isWallRunning ? wallRunGravity : isJumping ? jumpGravity : normalGravity;
-        yVelocity.y += gravity * Time.deltaTime;
+        if (!isGrounded)
+            yVelocity.y += gravity * Time.deltaTime;
         controller.Move(yVelocity * Time.deltaTime);
     }
 
@@ -309,7 +310,7 @@ public class PlayerComponent : MonoBehaviour
         rightWall = Physics.Raycast(transform.position, transform.right, out rightWallHit, .7f, wall);
         if ((rightWall || leftWall) && !isWallRunning && !isGrounded)
         {
-           TestWallRun();
+           ManageWallRun();
         }
         if((!rightWall && !leftWall) && isWallRunning)
         {
@@ -426,6 +427,7 @@ public class PlayerComponent : MonoBehaviour
     void Jump()
     {
         isJumping = true;
+
         if (isWallRunning)
         {
             ExitWallRun();
@@ -478,7 +480,7 @@ public class PlayerComponent : MonoBehaviour
         isDashing = false;
         dashInCooldown = false;
     }
-    void TestWallRun()
+    void ManageWallRun()
     {
         wallNormal = leftWall ? leftWallHit.normal : rightWallHit.normal;
 

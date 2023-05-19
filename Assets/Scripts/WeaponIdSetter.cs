@@ -11,7 +11,7 @@ public class WeaponIdSetter : MonoBehaviour
 
     public void SetIds()
     {
-        for(int i = 0; i < transform.childCount - 1; ++i)
+        for(int i = 0; i < transform.childCount-1; ++i)
         {
             transform.GetChild(i).GetComponent<WeaponManager>().weaponId = i;
         }

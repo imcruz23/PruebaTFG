@@ -6,8 +6,7 @@ enum Weapons
 {
     Pistol = 0,
     AR = 1,
-    SMG = 2,
-    Shotgun = 3
+    Shotgun = 2
 }
 
 public class AudioManager : MonoBehaviour
@@ -17,6 +16,7 @@ public class AudioManager : MonoBehaviour
     public List<AudioClip> pistolClips;
     public List<AudioClip> playerClips;
     public List<AudioClip> arClips;
+    public List<AudioClip> sgClips;
     public List<AudioClip> enemyClips;
 
     // Start is called before the first frame update
@@ -42,72 +42,104 @@ public class AudioManager : MonoBehaviour
     // Sonidos del jugador
     public void PlayPlayerWalkingSound()
     {
-        sourceVFX.clip = playerClips[0];
-        if (!sourceVFX.isPlaying)
-            sourceVFX.PlayOneShot(playerClips[0], 0.4f);
+        if (musicSource)
+        {
+            sourceVFX.clip = playerClips[0];
+            if (!sourceVFX.isPlaying)
+                sourceVFX.PlayOneShot(playerClips[0], 0.4f);
+        }
+        
     }
 
     public void PlayPlayerLandingSound()
     {
-        sourceVFX.PlayOneShot(playerClips[1], 0.6f);
+        if (musicSource)
+            sourceVFX.PlayOneShot(playerClips[1], 0.6f);
     }
 
     public void PlayPlayerSlidingSound()
     {
+        if (musicSource)
         sourceVFX.PlayOneShot(playerClips[2], 0.4f);
     }
 
     public void PlayPlayerDashSound()
     {
-        sourceVFX.clip = playerClips[3];
-        if (!sourceVFX.isPlaying)
-           sourceVFX.PlayOneShot(playerClips[3], 0.4f);
+        if (musicSource)
+        {
+            sourceVFX.clip = playerClips[3];
+            if (!sourceVFX.isPlaying)
+                sourceVFX.PlayOneShot(playerClips[3], 0.4f);
+        }
+        
     }
     public void PlayPlayerDamageSound()
     {
-        sourceVFX.clip = playerClips[4];
-        if (!sourceVFX.isPlaying)
-            sourceVFX.PlayOneShot(playerClips[4], 1.2f);
+        if (musicSource)
+        {
+            sourceVFX.clip = playerClips[4];
+            if (!sourceVFX.isPlaying)
+                sourceVFX.PlayOneShot(playerClips[4], 1.2f);
+        }
+       
     }
 
     public void PlayPlayerHealSound()
     {
-        sourceVFX.PlayOneShot(playerClips[5], 0.4f);
+        if (musicSource)
+            sourceVFX.PlayOneShot(playerClips[5], 0.4f);
     }
 
     // Controlador de disparo
 
     public void PlayShootingSound(int id)
     {
-        if(id == (int)Weapons.Pistol)
-            PlayPistolShootingSound();
-        if (id == (int)Weapons.AR)
-            PlayARShootingSound();
+        if (musicSource)
+        {
+            if (id == (int)Weapons.Pistol)
+                PlayPistolShootingSound();
+            if (id == (int)Weapons.AR)
+                PlayARShootingSound();
+            if (id == (int)Weapons.Shotgun)
+                PlaySGShootingSound();
+        }
     }
 
     public void PlayReloadingSound(int id)
     {
-        if (id == (int)Weapons.Pistol)
-            PlayPistolReloadingSound();
-        if (id == (int)Weapons.AR)
-            PlayARReloadingSound();
+        if (musicSource)
+        {
+            if (id == (int)Weapons.Pistol || id == (int)Weapons.Shotgun)
+                PlayPistolReloadingSound();
+            if (id == (int)Weapons.AR)
+                PlayARReloadingSound();
+        }
     }
     // Sonido de disparo
     void PlayPistolShootingSound()
     {
-        sourceVFX.PlayOneShot(pistolClips[0], 0.6f);
+        if (musicSource)
+            sourceVFX.PlayOneShot(pistolClips[0], 0.6f);
     }
 
     // Sonidos de AR
     void PlayARShootingSound()
     {
-        sourceVFX.PlayOneShot(arClips[0], 0.6f);
+        if (musicSource)
+            sourceVFX.PlayOneShot(arClips[0], 0.6f);
+    }
+
+    void PlaySGShootingSound()
+    {
+        if (musicSource)
+            sourceVFX.PlayOneShot(sgClips[0], 0.6f);
     }
 
     // Sonido de recarga
     void PlayPistolReloadingSound()
     {
-        sourceVFX.PlayOneShot(pistolClips[1], 0.6f);
+        if (musicSource)
+            sourceVFX.PlayOneShot(pistolClips[1], 0.6f);
     }
 
     void PlayARReloadingSound() {}
@@ -115,12 +147,14 @@ public class AudioManager : MonoBehaviour
     // Sonido de enemigos
     public void PlayEnemyShootingSound()
     {
-        sourceVFX.PlayOneShot(enemyClips[0], 0.6f);
+        if (musicSource)
+            sourceVFX.PlayOneShot(enemyClips[0], 0.6f);
     }
 
     public void PlayEnemyDamageSound()
     {
-        sourceVFX.PlayOneShot(enemyClips[1], 0.6f);
+        if (musicSource)
+            sourceVFX.PlayOneShot(enemyClips[1], 0.6f);
     }
 
 }

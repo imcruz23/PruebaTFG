@@ -10,7 +10,8 @@ public class SensController : MonoBehaviour
     // Start is called before the first frame update
     void Start()
     {
-        slider.value = PlayerPrefs.GetFloat("sens", 100f);
+        if (slider)
+            slider.value = 5f;//PlayerPrefs.GetFloat("sens", 100f);
         //MouseComponent.mouseSens = slider.value;
     }
 

@@ -41,16 +41,33 @@ public class AIComponent : MonoBehaviour
     {
         // Aumenta la vida del jugador
         var p = GameObject.Find("Character");
-        HealthComponent hc = p.GetComponent<HealthComponent>();
-        hc.TakeDamage(-5);
-        if (hc.life > hc.maxLife)
+        if (p) // Comprobamos si el jugador existe
         {
-            hc.life = hc.maxLife;
+            HealthComponent hc = p.GetComponent<HealthComponent>();
+            // Curamos al jugador
+            hc.TakeDamage(-5);
+            if (hc.life > hc.maxLife)
+            {
+                hc.life = hc.maxLife;
+            }
+            // Timers y puntuacion
+            if (MusicalNote.hitOnTime)
+            {
+                // Si es al ritmo, más puntuacion
+                UIM.DrawCriticalText();
+                LM.AddScore(score * 2);
+                UIM.UndrawCriticalText();
+            }
+            else // Puntuacion estandar
+                LM.AddScore(score);
+            //print("Mi score es de :" + LM.score);
+            // Ponemos el timer para quitar el texto de la racha
+            KillstreakManager.killTimer = 2000;
+            KillstreakManager.enemiesKilled++;
+
         }
-        // Timers y puntuacion
-        LM.AddScore(score);
-        //print("Mi score es de :" + LM.score);
-        KillstreakManager.killTimer = 2000;
-        KillstreakManager.enemiesKilled++;
+        
     }
+
+
 }

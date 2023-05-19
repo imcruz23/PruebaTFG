@@ -8,6 +8,7 @@ public class WeaponSwitching : MonoBehaviour
     public int selectedWeapon = 0;
     public PlayerComponent player; // Necesitamos el array de armas
     private InputManager IM;
+    public UIManager UIM;
 
     private static bool canSwitch = true;
 
@@ -27,6 +28,15 @@ public class WeaponSwitching : MonoBehaviour
             ChangeWeaponWithGamePad();
             //ChangeWeaponWithKeyboard();
         }
+        if (UIManager.pauseState)
+        {
+            canSwitch = false;
+        }
+        else
+        {
+            canSwitch = true;
+        }
+
     }
 
     public static void SetSwitch (bool b)

@@ -6,7 +6,7 @@ using TMPro;
 public class WeaponManager : MonoBehaviour
 {
 
-    [HideInInspector] public int weaponId;
+     public int weaponId;
 
     [Header("Camera")]
     public Camera cam;
@@ -111,7 +111,7 @@ public class WeaponManager : MonoBehaviour
         if (!burstMode)
             return "Aut";
         else
-            return "Burst (" + burstBullets + ")";
+            return "Burst / " + burstBullets;
 
     }
 

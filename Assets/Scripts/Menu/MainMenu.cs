@@ -64,4 +64,9 @@ public class MainMenu : MonoBehaviour
     {
         UIM.ResumeGame();
     }
+
+    public void ToMainMenu()
+    {
+        SceneManager.LoadScene("MainMenu");
+    }
 }

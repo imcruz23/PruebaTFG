@@ -10,10 +10,14 @@ public class UIManager : MonoBehaviour
 {
     // Para el Score
     [SerializeField] private TMP_Text scorePText;
+    // Cosas del timer
+    public TMP_Text timerText;
 
     // Managers
     [SerializeField] private InputManager IM;
     [SerializeField] private LevelManager LM;
+    [SerializeField] private AudioManager AM;
+    private TimerManager TM;
 
     // Para los pickups
     [SerializeField] private Image pickupBox;
@@ -35,6 +39,7 @@ public class UIManager : MonoBehaviour
 
     // En tiempo
     [SerializeField] private TMP_Text inTimeText;
+    public GameObject doublePText;
 
     // Cosas del menu de pausa
     public static bool pauseState = false;
@@ -64,6 +69,7 @@ public class UIManager : MonoBehaviour
             healthBar = GameObject.Find("Health Bar").GetComponent<Image>();
         if (!pauseScreen)
             pauseScreen = GameObject.Find("PauseScreen");
+        TM = GetComponent<TimerManager>();
     }
 
     private void Start()
@@ -78,6 +84,7 @@ public class UIManager : MonoBehaviour
     private void Update()
     {
         DrawScore();
+        DrawTimer();
         healthBar.rectTransform.sizeDelta = new Vector2(healthC.life, 100);
 
         if (IM.pauseM.WasPressedThisFrame())
@@ -89,6 +96,7 @@ public class UIManager : MonoBehaviour
             else
                 ResumeGame();
         }
+
     }
 
     private void PauseGame()
@@ -99,6 +107,7 @@ public class UIManager : MonoBehaviour
         IM.DisableInGameControls();
         Time.timeScale = 0;
         pauseState = true;
+        AM.musicSource.Pause();
     }
 
     public void ResumeGame()
@@ -110,6 +119,7 @@ public class UIManager : MonoBehaviour
         Time.timeScale = 1;
         this.pauseScreen.SetActive(false);
         pauseState = false;
+        AM.musicSource.UnPause();
     }
 
     public void DrawTriggerBox()
@@ -174,5 +184,23 @@ public class UIManager : MonoBehaviour
     public void UndrawInTime()
     {
         inTimeText.gameObject.SetActive(false);
+    }
+
+    public void DrawCriticalText()
+    {
+        doublePText.SetActive(true);
+    }
+    public void UndrawCriticalText()
+    {
+        Invoke(nameof(DisableText), 1f);
+    }
+
+    public void DisableText()
+    {
+        doublePText.SetActive(false);
+    }
+    private void DrawTimer()
+    {
+        timerText.text = string.Format("{0}:{1}:{2}", TM.minutes, TM.seconds, TM.cents);
     }
 }

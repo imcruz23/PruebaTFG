@@ -29,7 +29,7 @@ public class MouseComponent : MonoBehaviour
     void Update()
     {
         if (IM.playerInput.currentControlScheme.ToLower() == "gamepad")
-            sensFactor = 8.0f;
+           sensFactor = 8.0f;
         else
             sensFactor = 1.0f;
 
