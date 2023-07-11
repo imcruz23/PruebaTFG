@@ -464,11 +464,11 @@ public class PlayerComponent : MonoBehaviour
 
             if(!mov.Equals(new Vector3(0,0,0)))
             {
-                controller.Move(mov * dashSpeed * Time.deltaTime);
+                //controller.Move(mov * dashSpeed * Time.deltaTime);
             }
             else
             {
-                controller.Move(transform.forward * dashSpeed * Time.deltaTime);
+                //controller.Move(transform.forward * dashSpeed * Time.deltaTime);
             }
             audioManager.PlayPlayerDashSound();
             yield return null;
